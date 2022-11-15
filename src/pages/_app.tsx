@@ -1,5 +1,10 @@
-import type { AppProps } from 'next/app'
+import type { AppProps } from 'next/app';
 
-export default function App({ Component, pageProps }: AppProps) {
+// Toda importação de estilização globla deve ser feita em _app
+import '../styles/global.scss';
+
+function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
 }
+
+export default MyApp;
