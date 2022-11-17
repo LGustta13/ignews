@@ -23,15 +23,14 @@ export default class MyDocument extends Document {
                     <link rel="preconnect" href="https://fonts.gstatic.com" />
                     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet" />
 
+                    {/* Favicon deve estar sempre dentro da pasta image ou não vai funcionar, ou href="/favicon.png?" */}
+                    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
                 </Head>
                 <body>
                     <Main />
                     <NextScript />
                 </body>
             </Html>
-
-
         )
     }
 }
-
