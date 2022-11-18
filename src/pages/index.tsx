@@ -1,8 +1,10 @@
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { SubscribeButton } from '../components/SubscribeButton';
 import styles from './home.module.scss';
 
 export default function Home() {
+
   return (
     <>
       {/* O title foi colcado aqui porque futuramente queremos atualizá-lo oara cada página */}
@@ -23,6 +25,14 @@ export default function Home() {
         <img src="/images/avatar.svg" alt="Girl coding" />
       </main>
     </>
-
   )
+}
+
+// variável que recebe uma função que realiza tarefas no lado do servidor (deve ter exatamente este nome!)
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {
+      nome: 'Gustavo'
+    }
+  }
 }
