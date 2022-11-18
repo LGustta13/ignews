@@ -40,4 +40,10 @@
             font-weight: bold;
         }
     }
+
+    // Se observar, essa estilização do botão age no componente SubscribeButton, mas quem causa é a Home
+    // pois o SubscribeButton tem seu próprio arquivo de estilização
+    button {
+        margin-top: 2.5rem;
+    }
 }
