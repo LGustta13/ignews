@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { SubscribeButton } from '../components/SubscribeButton';
 import { stripe } from '../services/stripe';
@@ -16,7 +16,7 @@ export default function Home({ product }: HomeProps) {
 
   return (
     <>
-      {/* O title foi colcado aqui porque futuramente queremos atualizá-lo oara cada página */}
+      {/* O title foi colcado aqui porque futuramente queremos atualizá-lo para cada página */}
       <Head>
         <title>Home | ig.news</title>
       </Head>
@@ -37,8 +37,11 @@ export default function Home({ product }: HomeProps) {
   )
 }
 
-// variável que recebe uma função que realiza tarefas no lado do servidor (deve ter exatamente este nome!)
-export const getServerSideProps: GetServerSideProps = async () => {
+// getServerSideProps: variável que recebe uma função que realiza tarefas no lado do servidor (deve ter exatamente este nome!)
+// getStaticProps: variável que recebe uma função que gera um HTML estático (interessante para diminuir esforço!)
+export const getStaticProps: GetStaticProps = async () => {
+
+  const revalidateTimeIn24Hours = 60 * 60 * 24;
 
   // Id que representa o preço do produto
   const price = await stripe.prices.retrieve('price_1M5INcK5XDk9bXHHDVt9BPO8', {
@@ -60,6 +63,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       product,
-    }
+    },
+    revalidate: revalidateTimeIn24Hours,
   }
 }
