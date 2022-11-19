@@ -3,19 +3,19 @@
 import Stripe from "stripe";
 
 // Posso pegar informações diretamente do package.json
-import { name, version } from "../../package.json";
+import packageInfo from "../../package.json";
 
-const processEnv = (process.env.STRIPE_API_KEY ? process.env.STRIPE_API_KEY : "undefined");
+// Tive que fazer essa gambiarra pq o typescript identificava a env como undefined, mas deve ser string
+const processEnv = (process.env.STRIPE_API_KEY ? process.env.STRIPE_API_KEY : "undefined")
 
 export const stripe = new Stripe(
 
-    // Tive que fazer essa gambiarra pq o typescript identificava a env como undefined, mas deve ser string
     processEnv,
     {
         apiVersion: "2022-11-15",
         appInfo: {
-            name,
-            version
+            name: packageInfo.name,
+            version: packageInfo.version
         },
     }
 );
