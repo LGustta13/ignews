@@ -6,10 +6,10 @@ import { SessionProvider } from 'next-auth/react';
 // Qualquer elemento que precise ser compartilhado ou persistido entre várias páginas vai em _app
 import '../styles/global.scss';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     // Significa que qualquer reload será retornado as informações da session pelo pageProps
-    <SessionProvider session={pageProps.session}>
+    <SessionProvider session={session}>
       <Header />
       <Component {...pageProps} />
     </SessionProvider>
